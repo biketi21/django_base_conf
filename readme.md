@@ -11,7 +11,7 @@ I make use of a custom user model with both the firstname and email field, using
 
 ### just a snippet:
 
-'''python
+```python
 class Account(AbstractBaseUser, PermissionsMixin):
     firstname = models.CharField(max_length=30)
     email = models.EmailField(max_length=30, unique=True)
@@ -25,27 +25,27 @@ class Account(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["firstname"]
-'''
+```
 
 ### Installation
 
 Clone this repository to your local environment:
 
-'''bash
+```bash
 git clone https://github.com/biketi21/django_base_conf.git
-'''
+```
 
 then install dependencies like so:
 
-'''bash
+```bash
 pip3 -r install requirements.txt
-'''
+```
 
 spin up a demo:
 
-'''bash
+```bash
 python3 manage.py runserver
-'''
+```
 
 and make the neccesary tweaks that suit your needs.
 
