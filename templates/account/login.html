@@ -1,0 +1,62 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+
+<div class="col-md-3">
+<form class="login" method="POST" action="{% url 'account_login' %}">
+  {% csrf_token %}
+  <!-- Email input -->
+  <small style="color: red;"> {{ form.non_field_errors | safe }} </small>
+  <div class="form-outline mb-4">
+    <input type="email" name='login' required id="id_login" autocomplete="email" class="form-control" />
+    <label class="form-label" for="id_login">Email address</label>
+  </div>
+
+  <!-- Password input -->
+  <small style="color: red;"> {{ form.field.errors | safe }} </small>
+  <div class="form-outline mb-4">
+    <input type="password" name="password" autocomplete="current-password" required id="id_password" class="form-control" />
+    <label class="form-label" for="id_password">Password</label>
+  </div>
+
+  <!-- 2 column grid layout for inline styling -->
+  <div class="row mb-4">
+    <div class="col d-flex justify-content-center">
+      <!-- Checkbox -->
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
+        <label class="form-check-label" for="form2Example31"> Remember me </label>
+      </div>
+    </div>
+
+    <div class="col">
+      <!-- Simple link -->
+      <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+    </div>
+  </div>
+
+  <!-- Submit button -->
+  <button type="submit" class="btn btn-primary btn-block mb-4">Sign In</button>
+
+  <!-- Register buttons -->
+  <div class="text-center">
+    <p>Not a member? <a href="{{ signup_url }}">Register</a></p>
+    <p>or sign in with:</p>
+
+    <button type="button" class="btn btn-link btn-floating mx-1">
+      <a title="Google" class="socialaccount_provider google" href="/auth/google/login/?process=login">Google</i></a>
+      
+    </button>
+  </div>
+</form>
+
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+
+{% endblock %}

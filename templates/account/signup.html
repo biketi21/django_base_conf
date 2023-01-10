@@ -1,0 +1,66 @@
+{% extends "account/base.html" %}
+{% load socialaccount %}
+{% load static %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block content %}
+
+<div class="row">
+<div class=" col-md-3">
+
+  <h1>{% trans "Sign Up" %}</h1>
+
+<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+<p>or;</p>
+<p>Sign in with your <a href="{% provider_login_url 'google' %}">Google Account</a>.</p>
+
+
+<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+  {% csrf_token %}
+
+  <!-- Email input -->
+  <small style="color: red;"> {{ form.email.errors | safe }} </small>
+  <div class="form-outline mb-4">
+    
+    <input type="email" name="email" autocomplete="email" class="form-control" required="" id="id_email">
+    <label class="form-label" for="id_email">Email address</label>
+  </div>
+
+  <!-- FirstName input -->
+  <small style="color: red;"> {{ form.username.errors | safe }} </small>
+  <div class="form-outline mb-4">
+    
+    <input type="text" name="username" class="form-control" autocomplete="username" minlength="1" maxlength="30" required="" id="id_username">
+    <label class="form-label" for="id_username">First Name</label>
+  </div>
+
+
+  <!-- Password input -->
+  <small style="color: red;"> {{ form.password1.errors | safe }} </small>
+  <div class="form-outline mb-4">
+    
+    <input type="password" name="password1" autocomplete="new-password" class="form-control" required id="id_password1">
+    <label class="form-label" for="id_password1">Password</label>
+  </div>
+
+  <small style="color: red;"> {{ form.password2.errors | safe }} </small>
+  <div class="form-outline mb-4">
+    
+    <input type="password" name="password2" autocomplete="new-password" class="form-control" required id="id_password2">
+    <label class="form-label" for="id_password2">Confirm Password</label>
+  </div>
+
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <button class="btn btn-primary btn-block mb-4" type="submit">{% trans "Sign Up" %} &raquo;</button>
+</form>
+</div>
+<div class="rol col-md-6">
+  <img height="490px" src="{% static 'logo/background.jpg'%}">
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "account/base.html" %}
+{% load socialaccount %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+</head>
+{% block content %}
+<body>
+    <h1>Auth Demo</h1>
+    {% if user.is_authenticated %}
+    <p>Welcome, you are logged in as user {{ user.firstname }}</p>
+    {% else %}
+    <a href="{% provider_login_url 'google' %} ">Login with Google.</a>
+    {% endif %}
+
+    <script src="" async defer></script>
+</body>
+{% endblock %}
+</html>
