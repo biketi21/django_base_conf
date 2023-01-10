@@ -38,7 +38,7 @@ git clone https://github.com/biketi21/django_base_conf.git
 then install dependencies like so:
 
 ```bash
-pip3 -r install requirements.txt
+pip3 install -r requirements.txt
 ```
 
 spin up a demo:
@@ -47,7 +47,7 @@ spin up a demo:
 python3 manage.py runserver
 ```
 
-and make the neccesary tweaks that suit your needs.
+and make the necessary tweaks that suit your needs.
 
 
 ### Contributing
