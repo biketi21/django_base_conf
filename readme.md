@@ -9,24 +9,6 @@ I added a navbar for ease of use, acknowledging how uncormfortable styling is to
 
 I make use of a custom user model with both the firstname and email field, using the email field as the username field. This is in the 'accounts' app.
 
-### just a snippet:
-
-```python
-class Account(AbstractBaseUser, PermissionsMixin):
-    firstname = models.CharField(max_length=30)
-    email = models.EmailField(max_length=30, unique=True)
-    date_joined = models.DateTimeField(auto_now_add=True)
-    last_login = models.DateTimeField(auto_now_add=True)
-    is_active = models.BooleanField(default=True)
-    is_staff = models.BooleanField(default=False)
-    is_superuser = models.BooleanField(default=False)
-
-    objects = AccountManager()
-
-    USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ["firstname"]
-```
-
 ### Installation
 
 Clone this repository to your local environment:
